@@ -3,7 +3,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
-#define FNEV "adat.dat"
+#define FNEV "adat.bin"
 
 int main()
 {
@@ -41,7 +41,7 @@ int main()
 	while(read(fh, &si, sizeof(si))) {
 		if (!(si % 5)) {
 			si *= 2;
-			lseek(fh, -sizeof(si), SEEK_CUR);
+			lseek(fh, -(int)sizeof(si), SEEK_CUR);
 			write(fh, &si, sizeof(si));
 		}
 		printf("%10i", si);
